@@ -1,7 +1,6 @@
 {
   "username": "real",
   "password" : "random",
-  "invite_code": "code",
   "threads":"20",
   "captchakey": "enter key here"
 }
