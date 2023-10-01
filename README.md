@@ -5,8 +5,6 @@ FlashGen in a token generator for discord written in python
 
 To use this you need your own 1stcaptcha key with a balance.
 Edit info/config.json with your key to use it.
-Place your server invite in info/config.json
-only use the part after the slash like discord.gg/EXAMPLE would be only EXAMPLE
 
 # Info
 
