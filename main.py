@@ -1,11 +1,11 @@
 import json
+import threading
 
 import time
 
 from utils.ui import Log
 from utils.utils import Utils
 import tls_client
-import httpx
 
 import os
 import onest_captcha
@@ -15,10 +15,6 @@ if not os.path.exists("info"):
 
 config = json.load(open("info/config.json", encoding="utf-8"))
 
-if config['invite_code'] == "":
-    invite = input(Log.Info("Enter Invite Code"))
-else:
-    invite = config['invite_code']
 
 threadcount = int(config['threads'])
 
@@ -26,9 +22,7 @@ genned = 0
 errors = 0
 solved = 0
 StartTime = time.time()
-server_name = \
-    httpx.get(f"https://discord.com/api/v9/invites/{invite}?with_counts=true&with_expiration=true").json()["guild"][
-        "name"]
+
 
 
 class Console():
@@ -37,7 +31,7 @@ class Console():
     global solved
 
     def __init__(self):
-        self.title = f"{server_name} | Genned : {genned} | Errors: {errors} | Solved: {solved} | Elapsed: {round(time.time() - StartTime, 2)}s"
+        self.title = f"Genned : {genned} | Errors: {errors} | Solved: {solved} | Elapsed: {round(time.time() - StartTime, 2)}s"
 
 
 build_number = int(Utils.BuildNumber())
@@ -76,7 +70,6 @@ def main():
         'email': str(Utils.RandomEmail()),
         'username': str(Utils.username()),
         'password': str(Utils.Password()),
-        'invite': invite,
         'consent': True,
         'date_of_birth': date,
         "gift_code_sku_id": None,
@@ -86,7 +79,7 @@ def main():
 
     headers = {
         'origin': 'https://discord.com',
-        'referer': f'https://discord.gg/{invite}',
+        'referer': f'https://discord.gg/',
         'x-discord-locale': 'en-US',
         'x-debug-options': 'bugReporterEnabled',
         'user-agent': ua,
@@ -119,4 +112,31 @@ def main():
         errors += 1
         Console()
 
+if __name__ == '__main__':
+    main()
 
+
+"""
+this is to be replaced with the main call above. 
+this will make you lots more accounts per second but you need to implement 
+proxies to not be ratelimited.
+
+class Main():
+    pass
+
+
+def loop():
+    global errors
+    while True:
+        try:
+           Console()
+            main()
+        except Exception as e:
+            print(f"Error: {e}")
+            errors += 1
+            Console()
+
+
+for i in range(threadcount):
+    threading.Thread(target=loop).start()
+"""
