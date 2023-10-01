@@ -13,5 +13,6 @@ only use the part after the slash like discord.gg/EXAMPLE would be only EXAMPLE
 Please use this responsibly and do not use it maliciously. This is for educational purposes only.
 I am not responsible for any harm caused by this tool. 
 
-
+# Hacktoberfest
+create pr's to implement proxies, threading, and more features to make this more efficient
 
