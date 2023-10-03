@@ -1,5 +1,5 @@
 # FlashGen
-FlashGen in a token generator for discord written in python
+FlashGen is a token generator for discord written in python
 
 # How to use
 
